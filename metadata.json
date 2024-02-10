@@ -1,0 +1,8 @@
+{
+    "uuid": "slacker@hedgie.tech",
+    "name": "Slacker",
+    "description": "Improve Slack web or pwa notifications",
+    "shell-version": ["45"],
+    "settings-schema": "org.gnome.shell.extensions.slacker",
+    "url": "https://github.com/hedgieinsocks/gnome-extension-slacker"
+}

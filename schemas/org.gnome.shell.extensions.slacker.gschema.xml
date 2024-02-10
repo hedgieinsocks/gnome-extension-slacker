@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.slacker" path="/org/gnome/shell/extensions/slacker/">
+    <key name="urgency-level" type="i">
+      <default>1</default>
+    </key>
+    <key name="icon-name" type="i">
+      <default>0</default>
+    </key>
+    <key name="transient-mode" type="b">
+      <default>false</default>
+    </key>
+  </schema>
+</schemalist>
