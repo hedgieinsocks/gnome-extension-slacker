@@ -19,7 +19,7 @@ export default class Slacker extends Extension {
         const path = this.metadata.path;
         MessageTray.MessageTray.prototype._updateStateOriginal = MessageTray.MessageTray.prototype._updateState;
         MessageTray.MessageTray.prototype._updateState = function() {
-            customUpdateState(this, settings, path);
+            _updateStateCustom(this, settings, path);
         };
     }
 
@@ -29,7 +29,7 @@ export default class Slacker extends Extension {
     }
 }
 
-let customUpdateState = function(context, settings, path) {
+let _updateStateCustom = function(context, settings, path) {
     let isSlack = false;
 
     context._notificationQueue = context._notificationQueue.filter((notification) => {
