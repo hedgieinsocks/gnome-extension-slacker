@@ -65,6 +65,23 @@ export default class SlackerPreferences extends ExtensionPreferences {
         rowTransient.add_suffix(toggleTransient);
         rowTransient.activatable_widget = toggleTransient;
 
+        // Auto Expand
+        const rowExpand = new Adw.ActionRow({
+            title: "Auto Expand",
+            subtitle: "Force notifications to show all content",
+        });
+        group.add(rowExpand);
+
+        const toggleExpand = new Gtk.Switch({
+            active: settings.get_boolean("auto-expand"),
+            valign: Gtk.Align.CENTER,
+        });
+
+        settings.bind("auto-expand", toggleExpand, "active", Gio.SettingsBindFlags.DEFAULT);
+
+        rowExpand.add_suffix(toggleExpand);
+        rowExpand.activatable_widget = toggleExpand;
+
         window.add(page);
     }
 }

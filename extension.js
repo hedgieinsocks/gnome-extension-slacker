@@ -30,21 +30,26 @@ export default class Slacker extends Extension {
 }
 
 let customUpdateState = function(context, settings, path) {
+    let isSlack = false;
+
     context._notificationQueue = context._notificationQueue.filter((notification) => {
         if (notification.bannerBodyText.includes("app.slack.com")) {
+            isSlack = true;
             let iconName = iconMap[settings.get_int("icon-name")];
-            let urgencyLevel = settings.get_int("urgency-level");
-            let transientMode = settings.get_boolean("transient-mode");
-
-            let title = notification.title;
-            let message = notification.bannerBodyText.replace(/\s*app\.slack\.com\s*/, "");
             let icon = Gio.Icon.new_for_string(`${path}/icons/${iconName}.png`);
-
-            notification.update(title, message, { gicon: icon, clear: true });
-            notification.setUrgency(urgencyLevel);
-            notification.setTransient(transientMode);
+            let message = notification.bannerBodyText.replace(/\s*app\.slack\.com\s*/, "");
+            notification.update(notification.title, message, { gicon: icon, clear: true });
+            notification.setUrgency(settings.get_int("urgency-level"));
+            notification.setTransient(settings.get_boolean("transient-mode"));
         }
         return true
     });
+
     context._updateStateOriginal();
+
+    if (isSlack) {
+        if (settings.get_boolean("auto-expand")) {
+            context._expandBanner(true);
+        }
+    }
 }

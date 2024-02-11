@@ -10,5 +10,8 @@
     <key name="transient-mode" type="b">
       <default>false</default>
     </key>
+    <key name="auto-expand" type="b">
+      <default>false</default>
+    </key>
   </schema>
 </schemalist>
